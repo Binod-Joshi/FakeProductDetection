@@ -5,12 +5,14 @@ const Navbar = () => {
   return (
     <div className='navbar'>
       <div>
-        <Link to="/icon">ICON</Link>
-        <Link to="/fpds">FPDS</Link>
+        <Link style={{color:"white",display:"flex",alignItems:"center",justifyContent:"center"}} to="/">
+          <img style={{width:"35px",height:"35px"}} src="https://cdn.iconscout.com/icon/premium/png-512-thumb/fake-report-share-3930721-3260842.png?f=webp&w=512" alt="" />
+        </Link>
+        <Link style={{color:"white"}} to="/">FPDS</Link>
       </div>
       <div>
-        <Link to="/manufacturer">Manufacturer</Link>
-        <Link to="/Admin">Admin</Link>
+        <Link style={{color:"white"}} to="/manufacturer">Manufacturer</Link>
+        <Link style={{color:"white"}} to="/admin">Admin</Link>
       </div>
       <div>
         <button>
