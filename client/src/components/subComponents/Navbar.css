@@ -1,0 +1,32 @@
+.navbar {
+    /* position: sticky;
+    top: 0; */
+    background-color: rgb(12 67 142);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 60px;
+    width: 100vw;
+    margin-bottom: 10px;
+}
+
+.navbar > div:nth-child(1) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.navbar > div:nth-child(2) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.navbar > div:nth-child(3) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
