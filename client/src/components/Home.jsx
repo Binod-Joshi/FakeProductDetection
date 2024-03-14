@@ -20,7 +20,7 @@ const Home = () => {
           }}
         >
           <div>
-            <p>An Upgrade of Trust</p>
+            <h3>An Upgrade of Trust</h3>
           </div>
           <div>
             <h1>Fake Product Detection Site</h1>

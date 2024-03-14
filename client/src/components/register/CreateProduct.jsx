@@ -75,7 +75,7 @@ const CreateProduct = () => {
 
         <div className="registerDivButton">
           <button type="submit" style={{ backgroundColor: "rgb(12 67 142)" }}>
-            Create
+            Create Product
           </button>
         </div>
       </form>
