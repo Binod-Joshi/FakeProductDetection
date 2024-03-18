@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import "./RegisterManufacturer.css";
+import { ethers } from "ethers";
+import {
+  contractAddress,
+  contractABI,
+} from "../../contractDetails/ContractDetails";
 
 const RegisterManufacturer = () => {
   const [formData, setFormData] = useState({
@@ -13,9 +18,41 @@ const RegisterManufacturer = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
     console.log(formData);
+    try {
+      const { ethereum } = window;
+      if (ethereum) {
+        console.log("helo");
+        const provider = new ethers.BrowserProvider(ethereum);
+        const signer = await provider.getSigner();
+        console.log("ok bro!");
+        const contract = new ethers.Contract(contractAddress, contractABI, signer);
+        console.log("ok done!");
+        const tx = await contract.createManufacturer(
+          formData.name,
+          formData.website,
+          formData.address,
+        );
+        console.log("Manufacturer creation transaction sent:", tx.hash);
+        
+        console.log("Waiting for transaction confirmation...");
+        const receipt = await tx.wait();
+        console.log("Transaction confirmed:", receipt.transactionHash);
+        
+        // Optionally, you can parse event logs to extract relevant information
+        const event = contract.interface.parseLog(receipt.logs[0]);
+        console.log("Event emitted:", event);
+        
+        // Optionally, you can retrieve additional information from the transaction receipt
+        const { product_id, man_address } = ethers.utils.defaultAbiCoder.decode(['uint', 'address'], receipt.logs[0].data);
+        console.log("Additional information:", product_id, man_address);
+
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="registerManufacturerDiv">

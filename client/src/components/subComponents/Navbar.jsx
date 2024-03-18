@@ -62,10 +62,10 @@ const Navbar = () => {
         </Link>
       </div>
       <div>
-        <Link style={{ color: "white" }} to="/registerManufacturer">
+        <Link style={{ color: "white" }} to="/createProduct">
           Manufacturer
         </Link>
-        <Link style={{ color: "white" }} to="/createProduct">
+        <Link style={{ color: "white" }} to="/registerManufacturer">
           Admin
         </Link>
       </div>
