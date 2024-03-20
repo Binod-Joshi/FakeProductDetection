@@ -40,7 +40,7 @@ const CreateProduct = () => {
 
         if(currentStatusOfForm === "update Ownership"){
           console.log("update");
-          const updatedHashInBytes32 = `0x`+formDataForUpdate.productHash;
+          const updatedHashInBytes32 = `0x`+ formDataForUpdate.productHash;
           console.log(updatedHashInBytes32);
           const updatedData = await contract.ownershipUpdate(updatedHashInBytes32,formDataForUpdate.address);
           await updatedData.wait(1);
