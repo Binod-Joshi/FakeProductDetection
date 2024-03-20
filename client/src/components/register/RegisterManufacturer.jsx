@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./RegisterManufacturer.css";
 import { ethers } from "ethers";
 import {
   contractAddress,
   contractABI,
 } from "../../contractDetails/ContractDetails";
+import { Alert } from "@mui/material";
 
 const RegisterManufacturer = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,8 @@ const RegisterManufacturer = () => {
     website: "",
     address: "",
   });
+  const [status, setStatus] = useState("");
+  const [response, setResponse] = useState("");
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -46,15 +49,31 @@ const RegisterManufacturer = () => {
         console.log("Event emitted:", event);
         
         // Optionally, you can retrieve additional information from the transaction receipt
-        const { product_id, man_address } = ethers.utils.defaultAbiCoder.decode(['uint', 'address'], receipt.logs[0].data);
-        console.log("Additional information:", product_id, man_address);
-
+        // const { product_id, man_address } = ethers.utils.defaultAbiCoder.decode(['uint', 'address'], receipt.logs[0].data);
+        // console.log("Additional information:", product_id, man_address);
+        setStatus("success");
+        setResponse("Sucessfully Created.")
       }
     } catch (error) {
-      console.log(error);
+      console.log(error?.revert?.args[0]);
+      setStatus("error")
+      setResponse(error?.revert?.args[0]);
     }
   };
+
+  useEffect(() => {
+    if(status){
+      const timeout = setTimeout(() => {
+        setStatus("");
+      }, 2000);
+
+      return () => clearTimeout(timeout);
+    }
+  },[status]);
+
+  
   return (
+    <>
     <div className="registerManufacturerDiv">
       <form onSubmit={submitHandler} className="formRegister">
         <div>
@@ -106,6 +125,10 @@ const RegisterManufacturer = () => {
         </div>
       </form>
     </div>
+    {status !== "" && <div className="alertTop">
+    <Alert severity={status}>{response}</Alert>
+    </div>}
+    </>
   );
 };
 

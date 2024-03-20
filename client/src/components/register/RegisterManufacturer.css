@@ -46,3 +46,12 @@
     justify-content: center;
     margin-top: 20px;
 }
+
+.alertTop{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 75px;
+    right: 5px;
+}

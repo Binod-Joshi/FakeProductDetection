@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import {contractAddress, contractABI} from "../../contractDetails/ContractDetails"
+import { ethers } from "ethers";
+import { Alert } from "@mui/material";
 
 const CreateProduct = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +12,8 @@ const CreateProduct = () => {
   });
   const [formDataForUpdate,setFormDataForUpdate] = useState({productHash:"",address:""})
   const [currentStatusOfForm, setCurrentStatusOfForm] = useState("");
+  const [status, setStatus] = useState("");
+  const [response, setResponse] = useState("");
 
   const handleclickedOne = (data) => {
     setCurrentStatusOfForm(data);
@@ -17,17 +22,57 @@ const CreateProduct = () => {
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     if(currentStatusOfForm === "update Ownership"){
-      setCurrentStatusOfForm({ ...formDataForUpdate, [name]:value});
+      setFormDataForUpdate({ ...formDataForUpdate, [name]:value});
     }else{
       setFormData({ ...formData, [name]: value });
     }
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async(e) => {
     e.preventDefault();
     console.log(formData);
+        try {
+      const {ethereum} = window;
+      if(ethereum){
+        const provider = new ethers.BrowserProvider(ethereum);
+        const signer = await provider.getSigner();
+        const contract = new ethers.Contract(contractAddress, contractABI, signer);
+
+        if(currentStatusOfForm === "update Ownership"){
+          console.log("update");
+          const updatedHashInBytes32 = `0x`+formDataForUpdate.productHash;
+          console.log(updatedHashInBytes32);
+          const updatedData = await contract.ownershipUpdate(updatedHashInBytes32,formDataForUpdate.address);
+          await updatedData.wait(1);
+          console.log("successfully updated");
+          setStatus("success");
+          setResponse("Succesfully Updated")
+        }else{
+          const newProduct = await contract.createProduct(formData.name,formData.model,formData.price,formData.expiryDate);
+          await newProduct.wait(1);
+          console.log("successfully created");
+          setStatus("success");
+          setResponse("Successfully Updated");
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      setStatus("error");
+      setResponse("Failed!");
+    }
   };
+
+  useEffect(() => {
+    if(status){
+      const timeout = setTimeout(() => {
+        setStatus("");
+      }, 2000);
+
+      return () => clearTimeout(timeout);
+    }
+  },[status]);
   return (
+    <>
     <div className="registerManufacturerDiv">
       <form onSubmit={submitHandler} className="formRegister">
         <div
@@ -156,6 +201,10 @@ const CreateProduct = () => {
         </div>
       </form>
     </div>
+    {status !== "" && <div className="alertTop">
+    <Alert severity={status}>{response}</Alert>
+    </div>}
+    </>
   );
 };
 
