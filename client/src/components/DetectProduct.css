@@ -23,6 +23,18 @@
   border-radius: 7px;
   outline: none;
 }
+
+.centerData{
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  color: #f0f0f0cc;
+}
+
 .mid {
   display: flex;
   justify-content: center;
@@ -86,15 +98,4 @@
 
 .history li {
   list-style: none;
-}
-
-.centerData{
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
-  color: #f0f0f0cc;
 }
