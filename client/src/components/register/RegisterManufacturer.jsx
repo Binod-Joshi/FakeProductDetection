@@ -57,7 +57,7 @@ const RegisterManufacturer = () => {
     } catch (error) {
       console.log(error?.revert?.args[0]);
       setStatus("error")
-      setResponse(error?.revert?.args[0]);
+      setResponse(error?.revert?.args[0] || "Failed!");
     }
   };
 

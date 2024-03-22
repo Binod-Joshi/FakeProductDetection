@@ -58,7 +58,7 @@ const CreateProduct = () => {
     } catch (error) {
       console.log(error);
       setStatus("error");
-      setResponse("Failed!");
+      setResponse(error?.revert?.args[0] || "Failed!");
     }
   };
 
