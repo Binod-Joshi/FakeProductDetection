@@ -71,11 +71,11 @@ const ManufacturerList = () => {
               <p className="availableHeader">Manufacturer List</p>
             </div>
             <div className="showManufacturerData1">
-              {manufacturersList?.map((productHash, index) => {
+              {manufacturersList?.map((address, index) => {
                 return (
                   <div key={index}>
                     <p className="contentOfAvailableHeader">
-                      Manufacturer address: {productHash}
+                      Manufacturer address: {address}
                     </p>
                   </div>
                 );

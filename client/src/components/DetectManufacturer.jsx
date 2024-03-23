@@ -42,7 +42,7 @@ const DetectManufacturer = () => {
 
       return () => clearTimeout(timeout);
     }
-  },[status])
+  },[status]);
   return (
     <>
     <div className="detectManufacturer">

@@ -11,36 +11,6 @@ const DetectProduct = () => {
   const [productData, setProductData] = useState("");
   const [status, setStatus] = useState("");
   const [response, setResponse] = useState("");
-  const historyData = [
-    {
-      address: "0x681c18547fo6541y786ac55ki892hgk78",
-      timestamp: "Sunday, April 17, 2022, 3:36:33 PM",
-    },
-    {
-      address: "0x681c18547fo6541y786ac55ki892hgk78",
-      timestamp: "Sunday, April 17, 2022, 3:36:33 PM",
-    },
-    {
-      address: "0x681c18547fo6541y786ac55ki892hgk78",
-      timestamp: "Sunday, April 17, 2022, 3:36:33 PM",
-    },
-    {
-      address: "0x681c18547fo6541y786ac55ki892hgk78",
-      timestamp: "Sunday, April 17, 2022, 3:36:33 PM",
-    },
-    {
-      address: "0x681c18547fo6541y786ac55ki892hgk78",
-      timestamp: "Sunday, April 17, 2022, 3:36:33 PM",
-    },
-    {
-      address: "0x681c18547fo6541y786ac55ki892hgk78",
-      timestamp: "Sunday, April 17, 2022, 3:36:33 PM",
-    },
-    {
-      address: "0x681c18547fo6541y786ac55ki892hgk78",
-      timestamp: "Sunday, April 17, 2022, 3:36:33 PM",
-    },
-  ];
 
   let inc = 5;
   const itemCount = historyData ? historyData.length : 0;
@@ -70,10 +40,9 @@ const DetectProduct = () => {
           contractABI,
           signer
         );
-        const updatedProductHashInB32 = "0x" + productHash;
-        console.log(updatedProductHashInB32);
+
         const dataOfProduct = await contract.checkProduct(
-          updatedProductHashInB32
+          productHash
         );
         console.log("success");
         setProductData(dataOfProduct);
