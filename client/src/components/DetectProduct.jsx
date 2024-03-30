@@ -68,7 +68,7 @@ const DetectProduct = () => {
 
   return (
     <>
-      <div>
+      <div style={{height:`calc(100vh - 70px)`,backgroundColor:"#213547"}}>
         <div className="main" style={{ height: mainContainerHeight + "px" }}>
           <div className="top">
             <div className="title">
