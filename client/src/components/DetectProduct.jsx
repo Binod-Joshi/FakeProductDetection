@@ -12,19 +12,7 @@ const DetectProduct = () => {
   const [status, setStatus] = useState("");
   const [response, setResponse] = useState("");
 
-  let inc = 5;
-  const itemCount = historyData ? historyData.length : 0;
-  let extraHeight = itemCount > 0 ? itemCount * 75 : 0;
 
-  if (itemCount > 5) {
-    for (let i = 0; i < itemCount - 5; i++) {
-      extraHeight += inc;
-    }
-  }
-
-  const containerHeight = 50 + extraHeight;
-  const mainExtraHeight = itemCount > 0 ? (itemCount - 2) * 70 : 0;
-  const mainContainerHeight = 600 + mainExtraHeight;
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
@@ -63,6 +51,20 @@ const DetectProduct = () => {
       return () => clearTimeout(timeout);
     }
   }, [status]);
+
+  let inc = 5;
+  const itemCount = productData ? productData.length : 0;
+  let extraHeight = itemCount > 0 ? itemCount * 75 : 0;
+
+  if (itemCount > 5) {
+    for (let i = 0; i < itemCount - 5; i++) {
+      extraHeight += inc;
+    }
+  }
+
+  const containerHeight = 50 + extraHeight;
+  const mainExtraHeight = itemCount > 0 ? (itemCount - 2) * 70 : 0;
+  const mainContainerHeight = 600 + mainExtraHeight;
 
   return (
     <>
