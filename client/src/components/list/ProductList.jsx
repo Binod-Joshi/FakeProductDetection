@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { ethers } from "ethers";
 import React, { useEffect, useState } from "react";
 import {
@@ -105,5 +104,3 @@ const ProductList = () => {
 };
 
 export default ProductList;
-=======
->>>>>>> a13ea3d (Implement Modern Styling Architecture for ProductList)
