@@ -48,25 +48,18 @@ const ManufacturerList = () => {
   return (
     <>
       <div className="detectManufacturer">
-        <div style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
-        <button
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "15px 10px",
-            fontSize: "20px",
-            fontWeight: "bolder",
-            marginTop:"40px"
-          }}
-          onClick={onclickHandler}
-        >
-          List Of Manufacturers <BiSolidDownArrow style={{display:"flex",alignItems:"center",justifyContent:"center", marginLeft:"10px",paddingTop:"5px",fontSize:"14px"}}/>
-        </button>
+        <div className="flex justify-center items-center">
+          {" "}
+          {/* Tailwind classes */}
+          <button
+            className="flex justify-center items-center px-4 py-2 text-lg font-bold mt-4" // Tailwind classes
+            onClick={onclickHandler}
+          >
+            List Of Manufacturers <BiSolidDownArrow className="ml-2 pt-1" />
+          </button>
         </div>
         {manufacturersList && manufacturersList?.length > 0 && (
           <>
-            {" "}
             <div className="showManufacturerData">
               <p className="availableHeader">Manufacturer List</p>
             </div>

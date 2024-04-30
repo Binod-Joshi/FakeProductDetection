@@ -6,6 +6,7 @@ import {
 } from "../../contractDetails/ContractDetails";
 import { Alert } from "@mui/material";
 
+//Testing
 const ProductList = () => {
   const [address, setAddress] = useState("");
   const [products, setProducts] = useState([]);
@@ -27,12 +28,14 @@ const ProductList = () => {
           contractABI,
           provider
         );
-        const listOfProducts = await contract.getAllProductsOfManufacturer(address);
+        const listOfProducts = await contract.getAllProductsOfManufacturer(
+          address
+        );
         console.log(listOfProducts);
         setProducts(listOfProducts);
-        if(listOfProducts.length < 1){
+        if (listOfProducts.length < 1) {
           setStatus("info");
-          setResponse("No products are created yet.")
+          setResponse("No products are created yet.");
         }
       }
     } catch (error) {
@@ -43,73 +46,59 @@ const ProductList = () => {
   };
 
   useEffect(() => {
-    if(status){
+    if (status) {
       const timeout = setTimeout(() => {
         setStatus("");
         setResponse("");
-      },2000);
+      }, 2000);
 
       return () => clearTimeout(timeout);
     }
-  },[status])
+  }, [status]);
+
   return (
     <>
-    <div className="detectManufacturer">
-      <p
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "15px 0",
-          fontSize: "25px",
-          fontWeight: "bolder",
-          color:"#f0f0f0"
-        }}
-      >
-        Lists Of Products
-      </p>
-      <form
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-        onSubmit={submitHandler}
-      >
-        <input
-          className="input"
-          type="text"
-          placeholder="0x0000000000000000000000000000000000000000"
-          onChange={(e) => setAddress(e.target.value)}
-        />
-      </form>
-      {products && products?.length > 0 && (
-        <div>
-          <div className="showManufacturerData">
-            <p className="availableHeader">
-              Product List of Particular Manufacturer
-            </p>
+      <div className="detectManufacturer">
+        <p className="text-center text-2xl font-bold text-gray-200">
+          Lists Of Products
+        </p>
+        <form
+          onSubmit={submitHandler}
+          className="flex justify-center items-center"
+        >
+          <input
+            className="input px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            type="text"
+            placeholder="0x0000000000000000000000000000000000000000"
+            onChange={(e) => setAddress(e.target.value)}
+          />
+        </form>
+        {products && products?.length > 0 && (
+          <div>
+            <div className="showManufacturerData">
+              <p className="availableHeader">
+                Product List of Particular Manufacturer
+              </p>
+            </div>
+            <div className="showManufacturerData1">
+              {products?.map((productHash, index) => {
+                return (
+                  <div key={index}>
+                    <p className="contentOfAvailableHeader">
+                      Product Hash: {productHash}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-          <div className="showManufacturerData1">
-            {products?.map((productHash, index) => {
-              return (
-                <div key={index}>
-                  <p className="contentOfAvailableHeader">
-                    Product Hash: {productHash}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
+        )}
+      </div>
+      {status !== "" && (
+        <div className="alertTop">
+          <Alert severity={status}>{response}</Alert>
         </div>
       )}
-    </div>
-    { status !== "" && (
-      <div className="alertTop">
-        <Alert severity={status}>{response}</Alert>
-      </div>
-    )
-    }
     </>
   );
 };
