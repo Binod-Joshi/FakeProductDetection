@@ -30,3 +30,26 @@
     justify-content: center;
     gap: 10px;
 }
+
+.logoOfFakeProductDetection{
+    width: 35px;
+    height: 35px;
+}
+
+.connectAccountBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 50px;
+    font-size: 14px;
+}
+
+@media screen and (max-width:720px){
+    .logoOfFakeProductDetection{
+        width: 25px;
+        height: 25px;
+    }
+    .connectAccountBtn{
+        font-size: 10px;
+    }
+}

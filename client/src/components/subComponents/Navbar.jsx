@@ -41,7 +41,7 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      <div>
+      <div style={{margin:"0 5px"}}>
         <Link
           style={{
             color: "white",
@@ -52,16 +52,16 @@ const Navbar = () => {
           to="/"
         >
           <img
-            style={{ width: "35px", height: "35px" }}
+            className="logoOfFakeProductDetection"
             src="https://cdn.iconscout.com/icon/premium/png-512-thumb/fake-report-share-3930721-3260842.png?f=webp&w=512"
             alt=""
           />
         </Link>
-        <Link style={{ color: "white" }} to="/">
+        <Link style={{ color: "white", }} to="/">
           FPDS
         </Link>
       </div>
-      <div>
+      <div className="divLinkOfNavbar">
         <Link style={{ color: "white" }} to="/createProduct">
           Manufacturer
         </Link>
@@ -69,8 +69,8 @@ const Navbar = () => {
           Admin
         </Link>
       </div>
-      <div>
-        <button onClick={handleConnect}>{!currentAccount?"Connect Account":"Account connected"}</button>
+      <div style={{display:"flex",alignItems:"center",justifyContent:"center",marginLeft:"5px"}}>
+        <button className="connectAccountBtn" onClick={handleConnect}>{!currentAccount?"Connect Account":"Account connected"}</button>
       </div>
     </div>
   );

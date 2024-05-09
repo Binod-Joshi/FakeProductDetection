@@ -216,7 +216,7 @@ const CreateProduct = () => {
             <button type="submit" style={{ backgroundColor: "rgb(12 67 142)" }}>
               {currentStatusOfForm !== "update Ownership"
                 ? "Create Product"
-                : "Update Product"}
+                : "Update Ownership"}
             </button>
           </div>
         </form>

@@ -55,3 +55,9 @@
     top: 75px;
     right: 5px;
 }
+
+@media screen and (max-width: 720px){
+    .formRegister{
+        width: 70%;
+    }
+}
